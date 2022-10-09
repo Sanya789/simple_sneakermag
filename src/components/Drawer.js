@@ -1,30 +1,27 @@
-export default function Drawer() {
+export default function Drawer({ onClose, items = [] }) {
+ 
+ 
   return (
-    <div style={{ display: 'none' }} className="drawerOverlay">
+    <div className="drawerOverlay">
 
       <div className="drawer">
         <h2 className="mb-30 d-flex justify-between">Корзина
-          <img className="removeBtn cu-p" src="/img/btn-remove.svg" alt="remove" />
-
+          <img onClick={onClose} className="removeBtn cu-p" src="/img/btn-remove.svg" alt="close" />
         </h2>
 
         <div className="items">
-          <div className="cartItem d-flex align-center mb-20">
-            <div className="cartItemImg" style={{ backgroundImage: 'url(/img/sneakers/1.jpg)' }}></div>
-            <div className="mr-20 flex">
-              <p className="mb-5">Мужские Кроссовки Nike Blazer Mid Suede</p>
-              <b>12 999руб.</b>
-            </div>
-            <img className="removeBtn" src="/img/btn-remove.svg" alt="remove" />
-          </div>
-          <div className="cartItem d-flex align-center mb-20">
-            <div className="cartItemImg" style={{ backgroundImage: 'url(/img/sneakers/1.jpg)' }}></div>
-            <div className="mr-20 flex">
-              <p className="mb-5">Мужские Кроссовки Nike Blazer Mid Suede</p>
-              <b>12 999руб.</b>
-            </div>
-            <img className="removeBtn" src="/img/btn-remove.svg" alt="remove" />
-          </div>
+          {
+            items.map((item) => (
+              <div className="cartItem d-flex align-center mb-20">
+                {/* <img className="cartItemImg" src={`${item.imageUrl}`} alt='img'/> */}
+                <div className="cartItemImg" style={{ backgroundImage: `url(${item.imageUrl})` }}></div>
+                <div className="mr-20 flex">
+                  <p className="mb-5">{item.title}</p>
+                  <b>{item.price} руб.</b>
+                </div>
+                <img className="removeBtn" src="/img/btn-remove.svg" alt="remove" />
+              </div>
+            ))}
         </div>
 
         <div className="cartTotalBlock">

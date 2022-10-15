@@ -1,17 +1,26 @@
+import { Link } from "react-router-dom"
+
 export default function Header(props) {
   return (
     <header className="d-flex justify-between center">
-      <div className="d-flex align-center">
-        <img src="/img/logo.png" alt="logo" width={40} height={40} />
-        <div className="headerInfo">
-          <h3 className="text-uppercase">Sneakers React</h3>
-          <p className="opacity-5">Магазин топовых кроссовок</p>
+      <Link to="/">
+        <div className="d-flex align-center">
+          <img src="/img/logo.png" alt="logo" width={40} height={40} />
+          <div className="headerInfo">
+            <h3 className="text-uppercase">Sneakers React</h3>
+            <p className="opacity-5">Магазин топовых кроссовок</p>
+          </div>
         </div>
-      </div>
+      </Link>
       <ul className="d-flex">
         <li className="mr-30 cu-p" onClick={props.onClickCart}>
           <img src="/img/cart.svg" alt="logo" width={18} height={18} />
           <span>1205 руб.</span>
+        </li>
+        <li className="mr-30 cu-p" >
+          <Link to="/favourite">
+            <img src="/img/heart.png" alt="fav" width={18} height={18} />
+          </Link>
         </li>
         <li>
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">

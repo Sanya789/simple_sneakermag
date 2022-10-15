@@ -1,21 +1,28 @@
 import React from 'react';
 import styles from './Card.module.scss';
 
-export default function Card({title, imageUrl, price, onClickFavourite, onPlus}) {
+export default function Card({ id, title, imageUrl, price, onPlus, onFavourite, favourite = false }) {
   const [isAdded, setIsAdded] = React.useState(false)
+  const [isFavourite, setIsFavourite] = React.useState(favourite)
   const onClickPlus = () => {
-    onPlus({title, imageUrl, price});
+    onPlus({ title, imageUrl, price });
     setIsAdded(!isAdded)
   }
 
-  React.useEffect(() => {
+  const onClickFavourite = () => {
+    console.log(id + ' in card');
+    onFavourite({ id, title, imageUrl, price })
+    setIsFavourite(!isFavourite)
+  }
 
-  }, [isAdded])
+  // React.useEffect(() => {
+
+  // }, [isAdded])
 
   return (
     <div className={styles.card}>
       <div className={styles.favourite} onClick={onClickFavourite}>
-        <img src="/img/empty-like.svg" alt="empty-like" />
+        <img src={isFavourite === true ? "/img/filled-like.svg" : "/img/empty-like.svg"} alt="empty-like" />
 
       </div>
       <img src={imageUrl} alt="sneakers" width={133} height={112} />

@@ -1,5 +1,38 @@
-export default function Drawer({ onClose, items = [], onRemove }) {
+import React from "react";
+import axios from "axios";
+import AppContext from "../context";
+import Info from "./Info";
 
+const delay = (ms) => new Promise((resolve, reject) => {
+  setTimeout(resolve, ms)
+})
+
+export default function Drawer({ onClose, items = [], onRemove }) {
+  const { cartItems, setCartItems } = React.useContext(AppContext)
+  const [orderId, setOrderId] = React.useState(null)
+  const [isOrderComplete, setIsOrderComplete] = React.useState(false)
+  const [isLoading, setIsLoading] = React.useState(false)
+
+
+  const onClickOrder = async () => {
+    try {
+      setIsLoading(true)
+      const { data } = await axios.post('https://63428d96ba4478d4783d8d19.mockapi.io/orders', { items: cartItems });
+      //await axios.put('https://63428d96ba4478d4783d8d19.mockapi.io/cart', []);
+      setOrderId(data.id)
+      setIsOrderComplete(true)
+      setCartItems([])
+      for (let i = 0; i < cartItems.length; i++) {
+        const item = cartItems[i];
+        axios.delete('https://63428d96ba4478d4783d8d19.mockapi.io/cart' + item.id);
+        await delay(1000);
+      }
+
+    } catch (error) {
+      alert('Не удалось создать заказ')
+    }
+    setIsLoading(false)
+  }
 
   return (
     <div className="drawerOverlay">
@@ -10,10 +43,10 @@ export default function Drawer({ onClose, items = [], onRemove }) {
         </h2>
         {
           items.length > 0 ? (
-            <div>
+            <div className="d-flex flex-column flex">
               <div className="items">
                 {items.map((item) => (
-                  <div className="cartItem d-flex align-center mb-20">
+                  <div key={item.id} className="cartItem d-flex align-center mb-20">
                     {/* <img className="cartItemImg" src={`${item.imageUrl}`} alt='img'/> */}
                     <div className="cartItemImg" style={{ backgroundImage: `url(${item.imageUrl})` }}></div>
                     <div className="mr-20 flex">
@@ -37,21 +70,18 @@ export default function Drawer({ onClose, items = [], onRemove }) {
                     <b>4298 руб.</b>
                   </li>
                 </ul>
-                <button className="greenButton">Оформить заказ
+                <button disabled={isLoading} className="greenButton" onClick={onClickOrder}>
+                  Оформить заказ
                   <img src="/img/arrow.svg" alt="arrow" />
                 </button>
               </div>
             </div>)
             :
-            (<div className='cartEmpty d-flex align-center justify-center flex-column flex'>
-              <img className='mb-20' width={'120px'} src='/img/empty-cart.jpeg' alt='empty-cart-img' />
-              <h2>Корзина пуста</h2>
-              <p className='opacity-6'>Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ</p>
-              <button onClick={onClose} className='greenButton'>
-                <img src='/img/arrow.svg' alt='arrow' />
-                Вернуться назад
-              </button>
-            </div>)
+            (
+              <Info title={isOrderComplete ? "Заказ оформлен" : "Корзина пуста"}
+                description={isOrderComplete ? `Ваш заказ ${orderId} скоро будет передан курьерской доставке` : "Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ"}
+                image={isOrderComplete ? "/img/complete-order.png" : "/img/empty-cart.jpeg"} />
+            )
         }
       </div>
     </div>

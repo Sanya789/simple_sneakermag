@@ -1,17 +1,19 @@
 import React from "react";
 import axios from "axios";
-import AppContext from "../context";
 import Info from "./Info";
+import { useCart } from "../hooks/useCart";
 
 const delay = (ms) => new Promise((resolve, reject) => {
   setTimeout(resolve, ms)
 })
 
 export default function Drawer({ onClose, items = [], onRemove }) {
-  const { cartItems, setCartItems } = React.useContext(AppContext)
+  // const { cartItems, setCartItems } = React.useContext(AppContext)
   const [orderId, setOrderId] = React.useState(null)
   const [isOrderComplete, setIsOrderComplete] = React.useState(false)
   const [isLoading, setIsLoading] = React.useState(false)
+  const {cartItems, setCartItems, totalPrice} = useCart()
+  // const totalPrice = cartItems.reduce((sum, obj) => Number(obj.price) + Number(sum), 0)
 
 
   const onClickOrder = async () => {
@@ -33,6 +35,8 @@ export default function Drawer({ onClose, items = [], onRemove }) {
     }
     setIsLoading(false)
   }
+
+
 
   return (
     <div className="drawerOverlay">
@@ -62,12 +66,12 @@ export default function Drawer({ onClose, items = [], onRemove }) {
                   <li className="d-flex">
                     <span>Итого:</span>
                     <div></div>
-                    <b>21 489 руб.</b>
+                    <b>{totalPrice} руб.</b>
                   </li>
                   <li className="d-flex">
                     <span>НДС 20%:</span>
                     <div></div>
-                    <b>4298 руб.</b>
+                    <b>{totalPrice / 100 * 20} руб.</b>
                   </li>
                 </ul>
                 <button disabled={isLoading} className="greenButton" onClick={onClickOrder}>

@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import axios from 'axios';
 import Favourite from './pages/Favourite';
 import AppContext from './context';
+import Orders from './pages/Orders';
 
 function App() {
   const [items, setItems] = React.useState([])
@@ -106,6 +107,8 @@ function App() {
             element={
               <Favourite />
             }>
+          </Route>
+          <Route path='/orders' element={<Orders />}>
           </Route>
         </Routes>
       </div>

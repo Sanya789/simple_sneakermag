@@ -1,13 +1,23 @@
 import React from "react"
 import Card from "../components/Card/Card"
 import axios from "axios"
+// import AppContext from "../context"
 
 export default function Orders() {
+  // const { onАddToFavourite, onAddToCart } = React.useContext(AppContext)
   const [orders, setOrders] = React.useState([])
+  const [isLoading, setIsLoading] = React.useState(true)
 
   React.useEffect(() => {
     async function fetchOrders() {
-      const { data } = await axios.get('https://63428d96ba4478d4783d8d19.mockapi.io/orders');
+      try {
+        const { data } = await axios.get('https://63428d96ba4478d4783d8d19.mockapi.io/orders');
+        setOrders(data.reduce((prev, obj) => [...prev, ...obj.items], []))
+        setIsLoading(false);
+      } catch (error) {
+        alert('Ошибка при запросе заказов')
+        console.error(error);
+      }
     }
     fetchOrders()
   }, [])
@@ -19,18 +29,20 @@ export default function Orders() {
 
       </div>
       <div className="d-flex flex-wrap">
-        {[].map((item, index) =>
+        {(isLoading ? [...Array(8)] : orders).map((item, index) => (
           <Card
             key={index}
-            id={item.id}
-            title={item.title}
-            price={item.price}
-            imageUrl={item.imageUrl}
-            favourite={true}
-          // onPlus={(item) => onAddToCart(item)}
-          // onFavourite={(item) => onАddToFavourite(item)}
+            // id={item.id}
+            // title={item.title}
+            // price={item.price}
+            // imageUrl={item.imageUrl}
+            // favourite={true}
+            // onPlus={(item) => onAddToCart(item)}
+            // onFavourite={(item) => onАddToFavourite(item)}
+            loading={isLoading}
+            {...item}
           />
-        )}
+        ))}
       </div>
     </div>
   )

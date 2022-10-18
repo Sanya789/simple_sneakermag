@@ -1,18 +1,19 @@
 import React from "react";
 import axios from "axios";
-import Info from "./Info";
-import { useCart } from "../hooks/useCart";
+import Info from "../Info";
+import { useCart } from "../../hooks/useCart";
+import styles from './Drawer.module.scss'
 
 const delay = (ms) => new Promise((resolve, reject) => {
   setTimeout(resolve, ms)
 })
 
-export default function Drawer({ onClose, items = [], onRemove }) {
+export default function Drawer({ onClose, items = [], onRemove, opened }) {
   // const { cartItems, setCartItems } = React.useContext(AppContext)
   const [orderId, setOrderId] = React.useState(null)
   const [isOrderComplete, setIsOrderComplete] = React.useState(false)
   const [isLoading, setIsLoading] = React.useState(false)
-  const {cartItems, setCartItems, totalPrice} = useCart()
+  const { cartItems, setCartItems, totalPrice } = useCart()
   // const totalPrice = cartItems.reduce((sum, obj) => Number(obj.price) + Number(sum), 0)
 
 
@@ -39,16 +40,16 @@ export default function Drawer({ onClose, items = [], onRemove }) {
 
 
   return (
-    <div className="drawerOverlay">
+    <div className={`${styles.drawerOverlay} ${opened ? styles.drawerOverlayVisible : ''}`}>
 
-      <div className="drawer">
+      <div className={styles.drawer}>
         <h2 className="mb-30 d-flex justify-between">Корзина
           <img onClick={onClose} className="removeBtn cu-p" src="/img/btn-remove.svg" alt="close" />
         </h2>
         {
           items.length > 0 ? (
             <div className="d-flex flex-column flex">
-              <div className="items">
+              <div className="items flex">
                 {items.map((item) => (
                   <div key={item.id} className="cartItem d-flex align-center mb-20">
                     {/* <img className="cartItemImg" src={`${item.imageUrl}`} alt='img'/> */}

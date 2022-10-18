@@ -15,6 +15,7 @@ body {
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.04);
   border-radius: 20px;
   max-width: 1080px;
+  height: 100%;
   margin: 50px auto;
 }
 
@@ -65,40 +66,7 @@ header {
   }
 }
 
-.drawerOverlay {
-  position: absolute;
-  left: 0;
-  top: 0;
-  background-color: rgba(0, 0, 0, 0.1);
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-}
 
-.drawer {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  width: 420px;
-  height: 100%;
-  left: 865px;
-  right: 0;
-  top: 0px;
-  background: #FFFFFF;
-  box-shadow: -10px 4px 24px rgba(0, 0, 0, 0.1);
-  padding: 30px;
-
-  h2 {
-    margin: 0;
-    font-size: 24px;
-  }
-
-  .items {
-    flex: 1;
-    overflow: auto;
-    margin-bottom: 40px;
-  }
-}
 
 
 
@@ -163,7 +131,7 @@ header {
 
   .greenButton {
     position: relative;
-    
+
 
     &:disabled {
       animation: button-loading 0.6s ease-in-out infinite;

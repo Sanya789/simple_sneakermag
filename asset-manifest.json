@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/simple_sneakermag/static/css/main.57c8fbc2.css",
-    "main.js": "/simple_sneakermag/static/js/main.251f4595.js",
+    "main.js": "/simple_sneakermag/static/js/main.afe3e442.js",
     "index.html": "/simple_sneakermag/index.html",
     "main.57c8fbc2.css.map": "/simple_sneakermag/static/css/main.57c8fbc2.css.map",
-    "main.251f4595.js.map": "/simple_sneakermag/static/js/main.251f4595.js.map"
+    "main.afe3e442.js.map": "/simple_sneakermag/static/js/main.afe3e442.js.map"
   },
   "entrypoints": [
     "static/css/main.57c8fbc2.css",
-    "static/js/main.251f4595.js"
+    "static/js/main.afe3e442.js"
   ]
 }

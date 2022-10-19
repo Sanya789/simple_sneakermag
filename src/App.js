@@ -109,7 +109,7 @@ function App() {
 
         <Header onClickCart={() => setCartOpened(true)} />
         <Routes>
-          <Route path='/' exac element={
+          <Route path='simple_sneakermag' exac element={
             <Home
               items={items}
               favourites={favourites}
@@ -122,12 +122,12 @@ function App() {
               isLoading={isLoading}
             />}>
           </Route>
-          <Route path='/favourite' exac
+          <Route path='favourite' exac
             element={
               <Favourite />
             }>
           </Route>
-          <Route path='/orders' element={<Orders />}>
+          <Route path='orders' element={<Orders />}>
           </Route>
         </Routes>
       </div>

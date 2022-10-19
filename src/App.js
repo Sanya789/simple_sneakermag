@@ -39,9 +39,10 @@ function App() {
 
   const onAddToCart = (obj) => {
     try {
-      if (cartItems.find((item) => Number(item.parentId) === Number(obj.id))) {
+     const findItem = cartItems.find((item) => Number(item.parentId) === Number(obj.id))
+      if (findItem) {
         axios.delete(`https://63428d96ba4478d4783d8d19.mockapi.io/cart/${obj.id}`)
-        setCartItems((prev) => prev.filter((item) => Number(item.id) !== Number(obj.id)));
+        setCartItems((prev) => prev.filter((item) => Number(item.parentId) !== Number(obj.id)));
       } else {
         axios.post('https://63428d96ba4478d4783d8d19.mockapi.io/cart', obj);
         setCartItems(prev => [...prev, obj])

@@ -9,7 +9,7 @@ export default function Header(props) {
 
   return (
     <header className="d-flex justify-between center">
-      <Link to="simple_sneakermag">
+      <Link to="/">
         <div className="d-flex align-center">
           <img src="img/logo.png" alt="logo" width={40} height={40} />
           <div className="headerInfo">

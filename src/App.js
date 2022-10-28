@@ -109,7 +109,7 @@ function App() {
 
         <Header onClickCart={() => setCartOpened(true)} />
         <Routes>
-          <Route path='simple_sneakermag' exac element={
+          <Route path='/' exac element={
             <Home
               items={items}
               favourites={favourites}

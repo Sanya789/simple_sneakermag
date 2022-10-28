@@ -38,7 +38,7 @@ export default function Card({ id, title, imageUrl, price, onPlus, onFavourite, 
           <>
             {onFavourite && (
               <div className={styles.favourite} onClick={onClickFavourite}>
-                <img src={isFavourite ? 'img/liked.svg' : 'img/unliked.svg'} alt="Unlike" />
+                <img src={isFavourite ? 'img/liked.svg' : 'img/empty-like.svg'} alt="Unlike" />
               </div>
             )}
             <img src={`simple_sneakermag/${imageUrl}`} alt="sneakers" width={133} height={112} />

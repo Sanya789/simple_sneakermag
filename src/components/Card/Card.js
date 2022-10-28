@@ -41,7 +41,7 @@ export default function Card({ id, title, imageUrl, price, onPlus, onFavourite, 
                 <img src={isFavourite ? 'img/liked.svg' : 'img/unliked.svg'} alt="Unlike" />
               </div>
             )}
-            <img src={`simple_sneakermag/${imageUrl}`} alt="sneakers" width={133} height={112} />
+            <img src={`${imageUrl}`} alt="sneakers" width={133} height={112} />
             <h5>{title}</h5>
             <div className="d-flex justify-between align-center" >
               <div className="d-flex flex-column">

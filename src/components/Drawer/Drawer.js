@@ -85,7 +85,7 @@ export default function Drawer({ onClose, items = [], onRemove, opened }) {
             (
               <Info title={isOrderComplete ? "Заказ оформлен" : "Корзина пуста"}
                 description={isOrderComplete ? `Ваш заказ ${orderId} скоро будет передан курьерской доставке` : "Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ"}
-                image={isOrderComplete ? "simple_sneakermag/img/complete-order.png" : "simple_sneakermag/img/empty-cart.jpeg"} />
+                image={isOrderComplete ? "img/complete-order.png" : "img/empty-cart.jpeg"} />
             )
         }
       </div>

@@ -52,7 +52,7 @@ export default function Drawer({ onClose, items = [], onRemove, opened }) {
               <div className="items flex">
                 {items.map((item) => (
                   <div key={item.id} className="cartItem d-flex align-center mb-20">
-                    <img className="cartItemImg" src={`${item.imageUrl}`} alt='sneaker'/>
+                    <img className="cartItemImg" src={`${item.imageUrl.replace('simple_sneakermag', '')}`} alt='sneaker'/>
                     {/* <div className="cartItemImg" style={{ backgroundImage: `url(${item.imageUrl})` }}></div> */}
                     {/* <img className="cartItemImg" src={`${item.imageUrl}`} alt='sneaker'/> */}
                     <div className="mr-20 flex">
@@ -86,7 +86,7 @@ export default function Drawer({ onClose, items = [], onRemove, opened }) {
             (
               <Info title={isOrderComplete ? "Заказ оформлен" : "Корзина пуста"}
                 description={isOrderComplete ? `Ваш заказ ${orderId} скоро будет передан курьерской доставке` : "Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ"}
-                image={isOrderComplete ? "img/complete-order.png" : "img/empty-cart.jpeg"} />
+                image={isOrderComplete ? "simple_sneakermag/img/complete-order.png" : "simple_sneakermag/img/empty-cart.jpeg"} />
             )
         }
       </div>

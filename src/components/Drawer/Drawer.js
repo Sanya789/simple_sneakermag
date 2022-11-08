@@ -52,9 +52,9 @@ export default function Drawer({ onClose, items = [], onRemove, opened }) {
               <div className="items flex">
                 {items.map((item) => (
                   <div key={item.id} className="cartItem d-flex align-center mb-20">
-                    <img className="cartItemImg" src={`${item.imageUrl.replace('simple_sneakermag', '')}`} alt='sneaker'/>
+                    {/* <img className="cartItemImg" src={`${item.imageUrl.replace('simple_sneakermag', '')}`} alt='sneaker'/> */}
                     {/* <div className="cartItemImg" style={{ backgroundImage: `url(${item.imageUrl})` }}></div> */}
-                    {/* <img className="cartItemImg" src={`${item.imageUrl}`} alt='sneaker'/> */}
+                    <img className="cartItemImg" src={`${item.imageUrl}`} alt='sneaker'/>
                     <div className="mr-20 flex">
                       <p className="mb-5">{item.title}</p>
                       <b>{item.price} руб.</b>
